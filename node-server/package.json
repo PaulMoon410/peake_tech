@@ -1,0 +1,12 @@
+{
+  "name": "peake_tech_node_server",
+  "version": "1.0.0",
+  "description": "Multi-app Node.js server for Peake Technologies verticals.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

@@ -1,0 +1,42 @@
+.incident-table {
+  margin: 2rem 0 2rem 240px;
+  background: #1a2328;
+  color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.incident-table h2 {
+  margin-bottom: 1rem;
+}
+.incident-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+.incident-table th, .incident-table td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #2c353b;
+  text-align: left;
+}
+.incident-table th {
+  background: #232d36;
+  color: #fff;
+  font-weight: 600;
+}
+.incident-row.incident-critical {
+  background: #3a1a1a;
+  color: #ff4d4f;
+}
+.incident-row.incident-high {
+  background: #33231a;
+  color: #faad14;
+}
+.incident-row.incident-medium {
+  background: #2a2a1a;
+  color: #ffd666;
+}
+.incident-row.incident-low {
+  background: #1a2a1a;
+  color: #36cfc9;
+}

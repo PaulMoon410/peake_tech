@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/cyber/static/css/main.16496b93.css",
+    "main.js": "/cyber/static/js/main.39550a00.js",
+    "static/js/453.fc19f8e9.chunk.js": "/cyber/static/js/453.fc19f8e9.chunk.js",
+    "index.html": "/cyber/index.html",
+    "main.16496b93.css.map": "/cyber/static/css/main.16496b93.css.map",
+    "main.39550a00.js.map": "/cyber/static/js/main.39550a00.js.map",
+    "453.fc19f8e9.chunk.js.map": "/cyber/static/js/453.fc19f8e9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.16496b93.css",
+    "static/js/main.39550a00.js"
+  ]
+}

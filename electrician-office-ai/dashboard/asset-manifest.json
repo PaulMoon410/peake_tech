@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/electrician/static/css/main.f855e6bc.css",
+    "main.js": "/electrician/static/js/main.096f4361.js",
+    "static/js/453.fc19f8e9.chunk.js": "/electrician/static/js/453.fc19f8e9.chunk.js",
+    "index.html": "/electrician/index.html",
+    "main.f855e6bc.css.map": "/electrician/static/css/main.f855e6bc.css.map",
+    "main.096f4361.js.map": "/electrician/static/js/main.096f4361.js.map",
+    "453.fc19f8e9.chunk.js.map": "/electrician/static/js/453.fc19f8e9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f855e6bc.css",
+    "static/js/main.096f4361.js"
+  ]
+}

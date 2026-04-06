@@ -1,0 +1,42 @@
+.threat-summary-cards {
+  display: flex;
+  gap: 1.5rem;
+  margin: 2rem 0 2rem 240px;
+}
+.summary-card {
+  background: #232d36;
+  color: #fff;
+  border-radius: 8px;
+  padding: 1.2rem 2rem;
+  min-width: 140px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.summary-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+.summary-card span {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.summary-card.critical {
+  border-left: 6px solid #ff4d4f;
+}
+.summary-card.high {
+  border-left: 6px solid #faad14;
+}
+.summary-card.medium {
+  border-left: 6px solid #ffd666;
+}
+.summary-card.low {
+  border-left: 6px solid #36cfc9;
+}
+.summary-card.open-incidents {
+  border-left: 6px solid #1890ff;
+}
+.summary-card.resolved-incidents {
+  border-left: 6px solid #52c41a;
+}
