@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-// import { Pool } from 'pg';
+import { Pool } from 'pg';
 import { getDb } from './db.js';
 
 // Load environment variables
@@ -13,7 +13,14 @@ const port = process.env.PORT || 4000;
 app.use(cors());
 app.use(express.json());
 
-// SQLite database handle will be opened per request
+
+// Database selection logic
+let usePostgres = false;
+let pool = null;
+if (process.env.DATABASE_URL) {
+  usePostgres = true;
+  pool = new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
+}
 
 
 import scanRouter from './scanRouter.js';
@@ -27,9 +34,14 @@ app.get('/', (req, res) => {
 // API endpoints for dashboard
 app.get('/api/alerts', async (req, res) => {
   try {
-    const db = await getDb();
-    const alerts = await db.all('SELECT * FROM alerts');
-    res.json({ alerts });
+    if (usePostgres) {
+      const result = await pool.query('SELECT * FROM alerts');
+      res.json({ alerts: result.rows });
+    } else {
+      const db = await getDb();
+      const alerts = await db.all('SELECT * FROM alerts');
+      res.json({ alerts });
+    }
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch alerts', details: err.message });
   }
@@ -37,9 +49,14 @@ app.get('/api/alerts', async (req, res) => {
 
 app.get('/api/incidents', async (req, res) => {
   try {
-    const db = await getDb();
-    const incidents = await db.all('SELECT * FROM incidents');
-    res.json({ incidents });
+    if (usePostgres) {
+      const result = await pool.query('SELECT * FROM incidents');
+      res.json({ incidents: result.rows });
+    } else {
+      const db = await getDb();
+      const incidents = await db.all('SELECT * FROM incidents');
+      res.json({ incidents });
+    }
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch incidents', details: err.message });
   }
@@ -47,12 +64,19 @@ app.get('/api/incidents', async (req, res) => {
 
 app.get('/api/analytics', async (req, res) => {
   try {
-    const db = await getDb();
-    // Example: count alerts by type
-    const rows = await db.all('SELECT type, COUNT(*) as count FROM alerts GROUP BY type');
-    const labels = rows.map(r => r.type);
-    const values = rows.map(r => r.count);
-    res.json({ data: { labels, values } });
+    if (usePostgres) {
+      const result = await pool.query('SELECT type, COUNT(*) as count FROM alerts GROUP BY type');
+      const rows = result.rows;
+      const labels = rows.map(r => r.type);
+      const values = rows.map(r => r.count);
+      res.json({ data: { labels, values } });
+    } else {
+      const db = await getDb();
+      const rows = await db.all('SELECT type, COUNT(*) as count FROM alerts GROUP BY type');
+      const labels = rows.map(r => r.type);
+      const values = rows.map(r => r.count);
+      res.json({ data: { labels, values } });
+    }
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch analytics', details: err.message });
   }
