@@ -8,7 +8,16 @@ export function SocketProvider({ children }) {
 
   useEffect(() => {
     // TODO: Replace with your backend URL or use env variable
-    const socket = io(process.env.REACT_APP_API_URL || 'http://localhost:5000', {
+    // Use Render URL in production, localhost in development
+    let apiUrl = process.env.REACT_APP_API_URL;
+    if (!apiUrl) {
+      if (window.location.hostname === 'localhost') {
+        apiUrl = 'http://localhost:10000';
+      } else {
+        apiUrl = window.location.origin;
+      }
+    }
+    const socket = io(apiUrl, {
       path: '/socket.io',
       transports: ['websocket'],
       withCredentials: true,

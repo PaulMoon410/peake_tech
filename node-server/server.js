@@ -123,6 +123,7 @@ app.get('/api/alerts', async (req, res) => {
     const { rows } = await pool.query(query, params);
     res.json({ alerts: rows });
   } catch (err) {
+    console.error('Error in /api/alerts:', err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -152,6 +153,7 @@ app.get('/api/incidents', async (req, res) => {
     const { rows } = await pool.query(query, params);
     res.json({ incidents: rows });
   } catch (err) {
+    console.error('Error in /api/incidents:', err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -234,6 +236,7 @@ app.get('/api/analytics', async (req, res) => {
     }
     res.json(result);
   } catch (err) {
+    console.error('Error in /api/analytics:', err);
     res.status(500).json({ error: err.message });
   }
 });
